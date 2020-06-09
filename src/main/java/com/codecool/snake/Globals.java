@@ -23,6 +23,7 @@ public class Globals {
         return instance;
     }
 
+
     public void setGameLoop(GameLoop gameLoop) {
         this.gameLoop = gameLoop;
     }
@@ -40,6 +41,8 @@ public class Globals {
     public void startGame() { gameLoop.start(); }
 
     public void stopGame() { gameLoop.stop(); }
+
+    public void restartGame(){ game.restart(); }
 
     private Globals() {
         // singleton needs the class to have private constructor

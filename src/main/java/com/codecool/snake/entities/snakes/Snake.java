@@ -9,9 +9,11 @@ import com.codecool.snake.eventhandler.InputHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 
+import java.awt.*;
+
 
 public class Snake implements Animatable {
-    private static final float speed = 2;
+    private static float speed = 2;
     private int health = 100;
 
     private SnakeHead head;
@@ -34,11 +36,17 @@ public class Snake implements Animatable {
 
         body.doPendingModifications();
     }
+    public void destroy(){
+        this.head.destroy();
+        for (GameEntity snakePart : this.body.getList() ) {
+            snakePart.destroy();
+        }
+    }
 
     private SnakeControl getUserInput() {
         SnakeControl turnDir = SnakeControl.INVALID;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+        if(InputHandler.getInstance().isKeyPressed(KeyCode.A)) turnDir = SnakeControl.TURN_LEFT;
+        if(InputHandler.getInstance().isKeyPressed(KeyCode.D)) turnDir = SnakeControl.TURN_RIGHT;
         return turnDir;
     }
 

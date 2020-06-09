@@ -3,6 +3,9 @@ package com.codecool.snake;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
+
+import java.awt.*;
 
 public class Main extends Application {
 
@@ -18,7 +21,6 @@ public class Main extends Application {
         primaryStage.setTitle("Snake Game");
         primaryStage.setScene(mainScene);
         primaryStage.show();
-
         game.start();
     }
 
