@@ -29,17 +29,19 @@ public class Game extends Pane {
 
         init();
     }
-    public void restart(){
+
+    public void restart() {
         snake.destroy();
 
         List<GameEntity> gameObjs = Globals.getInstance().display.getObjectList();
-        for(GameEntity item : gameObjs){
+        for (GameEntity item : gameObjs) {
             item.destroy();
         }
         init();
         start();
 
     }
+
     public void init() {
         spawnSnake();
         spawnEnemies(1);
@@ -49,6 +51,7 @@ public class Game extends Pane {
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         gameTimer.play();
+
     }
 
     public void start() {
@@ -61,15 +64,15 @@ public class Game extends Pane {
     }
 
     private void spawnEnemies(int numberOfEnemies) {
-        for(int i = 0; i < numberOfEnemies; ++i) new CircleEnemy();
-        for(int i = 0; i < numberOfEnemies; ++i) new LineEnemy(100, 100);
-        for(int i = 0; i < numberOfEnemies; ++i) new LineEnemy(1450, 700);
+        for (int i = 0; i < numberOfEnemies; ++i) new CircleEnemy();
+        for (int i = 0; i < numberOfEnemies; ++i) new LineEnemy(100, 100);
+        for (int i = 0; i < numberOfEnemies; ++i) new LineEnemy(1450, 700);
     }
 
     private void spawnPowerUps(int numberOfPowerUps) {
-        for(int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
-        for(int i = 0; i < numberOfPowerUps; ++i) new PowerUpHealth();
-        for(int i = 0; i < numberOfPowerUps; ++i) new PowerUpSpeed();
+        for (int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
+        for (int i = 0; i < numberOfPowerUps; ++i) new PowerUpHealth();
+        for (int i = 0; i < numberOfPowerUps; ++i) new PowerUpSpeed();
     }
 
     private void setupInputHandling() {
@@ -77,4 +80,5 @@ public class Game extends Pane {
         scene.setOnKeyPressed(event -> InputHandler.getInstance().setKeyPressed(event.getCode()));
         scene.setOnKeyReleased(event -> InputHandler.getInstance().setKeyReleased(event.getCode()));
     }
+
 }

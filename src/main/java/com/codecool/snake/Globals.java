@@ -1,6 +1,9 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.powerups.PowerUpHealth;
+import com.codecool.snake.entities.powerups.PowerUpSpeed;
+import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.resources.Resources;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -56,6 +59,7 @@ public class Globals {
     }
 
     public void startGame() {
+
         gameLoop.start();
     }
 
@@ -65,13 +69,24 @@ public class Globals {
 
     public void restartGame() {
         List<Node> text = Globals.getInstance().display.getScreenText();
-        if(text.size() > 0){
+        if (text.size() > 0) {
             Globals.getInstance().display.remove(text.get(0));
             Globals.getInstance().display.remove(text.get(1));
         }
 
         game.restart();
     }
+
+    public void extraSpawn() {
+        int newSpawn = 6;
+        if (display.getObjectList().size() < newSpawn) {
+            for (int i = 0; i < 2; ++i) new SimplePowerUp();
+            for (int i = 0; i < 2; ++i) new PowerUpHealth();
+            for (int i = 0; i < 2; ++i) new PowerUpSpeed();
+            newSpawn += 4;
+        }
+    }
+
 
     private Globals() {
         // singleton needs the class to have private constructor

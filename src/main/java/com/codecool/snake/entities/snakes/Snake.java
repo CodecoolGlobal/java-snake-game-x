@@ -37,11 +37,13 @@ public class Snake implements Animatable {
     }
 
     public void step() {
+        System.out.println(Globals.getInstance().display.getObjectList().size());
         SnakeControl turnDir = getUserInput();
         head.updateRotation(turnDir, speed);
         updateSnakeBodyHistory();
         checkForGameOverConditions();
         body.doPendingModifications();
+        Globals.getInstance().extraSpawn();
     }
     public void destroy(){
         this.head.destroy();
