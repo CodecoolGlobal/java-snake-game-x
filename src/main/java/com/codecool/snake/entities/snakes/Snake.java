@@ -1,6 +1,7 @@
 package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.DelayedModificationList;
+import com.codecool.snake.Display;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
@@ -27,13 +28,19 @@ public class Snake implements Animatable {
         addPart(4);
     }
 
+    public int bodyLength(){
+        int length = 0;
+        for(GameEntity part: body.getList()){
+            length++;
+        }
+        return length;
+    }
+
     public void step() {
         SnakeControl turnDir = getUserInput();
         head.updateRotation(turnDir, speed);
-
         updateSnakeBodyHistory();
         checkForGameOverConditions();
-
         body.doPendingModifications();
     }
     public void destroy(){
@@ -69,6 +76,9 @@ public class Snake implements Animatable {
         if (head.isOutOfBounds() || health <= 0) {
             System.out.println("Game Over");
             Globals.getInstance().stopGame();
+            Globals.getInstance().showText(bodyLength());
+
+
         }
     }
 
