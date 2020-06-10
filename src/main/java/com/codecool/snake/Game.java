@@ -29,12 +29,14 @@ public class Game extends Pane {
     }
     public void restart(){
         snake.destroy();
+
         List<GameEntity> gameObjs = Globals.getInstance().display.getObjectList();
         for(GameEntity item : gameObjs){
             item.destroy();
         }
         init();
         start();
+
     }
     public void init() {
         spawnSnake();
