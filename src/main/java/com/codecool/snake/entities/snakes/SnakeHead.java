@@ -5,6 +5,8 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
+import com.codecool.snake.entities.powerups.PowerUpHealth;
+import com.codecool.snake.entities.powerups.PowerUpSpeed;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 
 import javafx.geometry.Point2D;
@@ -45,7 +47,15 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
         if(entity instanceof SimplePowerUp){
             System.out.println(getMessage());
-            snake.addPart(4);
+            snake.addPart(1);
+        }
+        if(entity instanceof PowerUpSpeed){
+            snake.changeSpeed(0.2f);
+            System.out.println("Snake speed is " + snake.getSpeed());
+        }
+        if(entity instanceof PowerUpHealth){
+            snake.changeHealth(1);
+            System.out.println("Snake health is " + snake.getHealth());
         }
     }
 

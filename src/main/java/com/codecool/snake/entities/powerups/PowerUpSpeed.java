@@ -13,8 +13,8 @@ public class PowerUpSpeed extends GameEntity implements Interactable{
     public PowerUpSpeed() {
         setImage(Globals.getInstance().getImage("PowerUpSpeed"));
 
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        setX(rnd.nextDouble() * (Globals.WINDOW_WIDTH - 50));
+        setY(rnd.nextDouble() * (Globals.WINDOW_HEIGHT - 50));
     }
 
     @Override

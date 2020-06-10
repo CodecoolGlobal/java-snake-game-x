@@ -13,8 +13,8 @@ import java.util.List;
 public class Globals {
     private static Globals instance = null;
 
-    public static final double WINDOW_WIDTH = 1000;
-    public static final double WINDOW_HEIGHT = 700;
+    public static final double WINDOW_WIDTH = 1500;
+    public static final double WINDOW_HEIGHT = 800;
 
     public Display display;
     public Game game;
@@ -65,8 +65,10 @@ public class Globals {
 
     public void restartGame() {
         List<Node> text = Globals.getInstance().display.getScreenText();
-        Globals.getInstance().display.remove(text.get(0));
-        Globals.getInstance().display.remove(text.get(1));
+        if(text.size() > 0){
+            Globals.getInstance().display.remove(text.get(0));
+            Globals.getInstance().display.remove(text.get(1));
+        }
 
         game.restart();
     }

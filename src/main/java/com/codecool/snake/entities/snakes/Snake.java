@@ -14,7 +14,7 @@ import java.awt.*;
 
 
 public class Snake implements Animatable {
-    private static float speed = 2;
+    private float speed = 2;
     private int health = 100;
 
     private SnakeHead head;
@@ -71,6 +71,9 @@ public class Snake implements Animatable {
     public void changeHealth(int diff) {
         health += diff;
     }
+    public void changeSpeed(float diff){
+        speed += diff;
+    }
 
     private void checkForGameOverConditions() {
         if (head.isOutOfBounds() || health <= 0) {
@@ -88,6 +91,22 @@ public class Snake implements Animatable {
             currentPart.setPosition(prev.getPosition());
             prev = currentPart;
         }
+    }
+
+    public float getSpeed(){
+        return speed;
+    }
+
+    public void setSpeed(float speed){
+        this.speed = speed;
+    }
+
+    public int getHealth(){
+        return health;
+    }
+
+    public void setHealth(int health){
+        this.health = health;
     }
 
     private GameEntity getLastPart() {
