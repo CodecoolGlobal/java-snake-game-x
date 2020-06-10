@@ -1,6 +1,8 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.enemies.CircleEnemy;
+import com.codecool.snake.entities.enemies.LineEnemy;
 import com.codecool.snake.entities.powerups.PowerUpHealth;
 import com.codecool.snake.entities.powerups.PowerUpSpeed;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
@@ -77,14 +79,28 @@ public class Globals {
         game.restart();
     }
 
+    int newSpawn = 10;
+
     public void extraSpawn() {
-        int newSpawn = 6;
-        if (display.getObjectList().size() < newSpawn) {
+
+        List<GameEntity> gameObjs = display.getObjectList();
+        if (gameObjs.size() <= newSpawn && gameObjs.size() != 0) {
             for (int i = 0; i < 2; ++i) new SimplePowerUp();
             for (int i = 0; i < 2; ++i) new PowerUpHealth();
             for (int i = 0; i < 2; ++i) new PowerUpSpeed();
-            newSpawn += 4;
+            newSpawn+=3;
+            System.out.println(gameObjs.size());
+            System.out.println(newSpawn);
+            System.out.println("Am adaugat extra hrana");
         }
+        if (display.getEnemyCount() < 1) {
+            new CircleEnemy();
+            new LineEnemy(100, 100);
+            new LineEnemy(1450, 700);
+        }
+        System.out.println(gameObjs.size());
+        System.out.println(newSpawn);
+        System.out.println("M am executat");
     }
 
 

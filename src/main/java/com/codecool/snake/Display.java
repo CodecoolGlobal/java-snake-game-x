@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.logging.Handler;
 
 
+import com.codecool.snake.entities.enemies.CircleEnemy;
+import com.codecool.snake.entities.enemies.LineEnemy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -25,6 +27,7 @@ public class Display {
     private DelayedModificationList<GameEntity> gameObjects = new DelayedModificationList<>();
     private List<Node> screenText = new ArrayList<>();
     Button restart = new Button("Restart");
+    int enemyCount = 0;
 
 
     public Display(Pane pane) {
@@ -42,6 +45,9 @@ public class Display {
 
 
     public void add(GameEntity entity) {
+        if(entity instanceof CircleEnemy || entity instanceof LineEnemy){
+            enemyCount++;
+        }
         displayPane.getChildren().add(entity);
         gameObjects.add(entity);
     }
@@ -51,6 +57,9 @@ public class Display {
     }
 
     public void remove(GameEntity entity) {
+        if(entity instanceof CircleEnemy || entity instanceof LineEnemy){
+            enemyCount--;
+        }
         displayPane.getChildren().remove(entity);
         gameObjects.remove(entity);
     }
@@ -78,6 +87,10 @@ public class Display {
         displayPane.getChildren().remove(snakeHead);
         displayPane.getChildren().add(snakeHead);
 
+    }
+
+    public int getEnemyCount(){
+        return enemyCount;
     }
 
     public void clear() {

@@ -38,6 +38,7 @@ public class Snake implements Animatable {
 
     public void step() {
         System.out.println(Globals.getInstance().display.getObjectList().size());
+        System.out.println(Globals.getInstance().display.getEnemyCount());
         SnakeControl turnDir = getUserInput();
         head.updateRotation(turnDir, speed);
         updateSnakeBodyHistory();
