@@ -22,7 +22,7 @@ public class CircleEnemy extends Enemy implements Animatable, Interactable {
     public CircleEnemy() {
         super(10);
 
-        setImage(Globals.getInstance().getImage("SimpleEnemy"));
+        setImage(Globals.getInstance().getImage("Circle"));
         setX(900);
         setY(400);
 

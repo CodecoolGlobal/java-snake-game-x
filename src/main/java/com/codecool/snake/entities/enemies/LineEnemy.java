@@ -25,7 +25,7 @@ public class LineEnemy extends Enemy implements Animatable, Interactable {
     public LineEnemy(double X, double Y) {
         super(10);
 
-        setImage(Globals.getInstance().getImage("SimpleEnemy"));
+        setImage(Globals.getInstance().getImage("Line"));
         setX(X);
         setY(Y);
 

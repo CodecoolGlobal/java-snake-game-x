@@ -54,6 +54,8 @@ public class Globals {
         resources.addImage("PowerUpBerry", new Image("powerup_berry.png"));
         resources.addImage("PowerUpSpeed", new Image("powerup_speed.png"));
         resources.addImage("PowerUpHealth", new Image("powerup_health.png"));
+        resources.addImage("Circle", new Image("clone.png"));
+        resources.addImage("Line", new Image("droid.png"));
         resources.addImage("Laser", new Image("laser.png"));
     }
 

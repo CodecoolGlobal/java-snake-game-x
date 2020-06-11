@@ -23,7 +23,7 @@ public class Main extends Application {
         Scene mainScene = new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
         Image img = new Image("background.png");
         BackgroundImage bgImg = new BackgroundImage(img,
-                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
                 new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
         Background background = new Background(bgImg);
