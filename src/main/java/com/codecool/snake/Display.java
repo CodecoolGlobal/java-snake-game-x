@@ -2,13 +2,12 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.CircleEnemy;
-import com.codecool.snake.entities.enemies.LineEnemy;
+import com.codecool.snake.entities.enemies.UpEnemy;
 import com.codecool.snake.entities.powerups.PowerUpHealth;
 import com.codecool.snake.entities.powerups.PowerUpSpeed;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -64,7 +63,7 @@ public class Display {
 
 
     public void add(GameEntity entity) {
-        if(entity instanceof CircleEnemy || entity instanceof LineEnemy){
+        if(entity instanceof CircleEnemy || entity instanceof UpEnemy){
             enemyCount++;
         }
         if (entity instanceof PowerUpHealth){
@@ -85,7 +84,7 @@ public class Display {
     }
 
     public void remove(GameEntity entity) {
-        if(entity instanceof CircleEnemy || entity instanceof LineEnemy){
+        if(entity instanceof CircleEnemy || entity instanceof UpEnemy){
             enemyCount--;
         }
         if (entity instanceof PowerUpHealth){

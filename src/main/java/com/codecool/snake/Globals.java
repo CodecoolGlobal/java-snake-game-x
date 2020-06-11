@@ -1,15 +1,13 @@
 package com.codecool.snake;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.CircleEnemy;
-import com.codecool.snake.entities.enemies.LineEnemy;
+import com.codecool.snake.entities.enemies.UpEnemy;
 import com.codecool.snake.entities.powerups.PowerUpHealth;
 import com.codecool.snake.entities.powerups.PowerUpSpeed;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.resources.Resources;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.util.List;
@@ -54,8 +52,9 @@ public class Globals {
         resources.addImage("PowerUpPizza", new Image("powerup_pizza.png"));
         resources.addImage("PowerUpSpeed", new Image("powerup_speed.png"));
         resources.addImage("PowerUpHealth", new Image("powerup_health.png"));
-        resources.addImage("Circle", new Image("clone.png"));
-        resources.addImage("Line", new Image("droid.png"));
+        resources.addImage("CircleEnemy", new Image("circle_enemy.png"));
+        resources.addImage("UpEnemy", new Image("up_enemy.png"));
+        resources.addImage("DownEnemy", new Image("down_enemy.png"));
         resources.addImage("Laser", new Image("laser.png"));
     }
 
@@ -121,8 +120,8 @@ public class Globals {
         }
         if (display.getEnemyCount() < 1) {
             new CircleEnemy();
-            new LineEnemy(100, 100);
-            new LineEnemy(1450, 700);
+            new UpEnemy(100, 100);
+            new UpEnemy(1450, 700);
         }
     }
 

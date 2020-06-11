@@ -13,7 +13,7 @@ import javafx.geometry.Point2D;
 
 
 
-public class LineEnemy extends Enemy implements Animatable, Interactable {
+public class UpEnemy extends Enemy implements Animatable, Interactable {
 
     private Point2D heading;
     private static Random rnd = new Random();
@@ -22,17 +22,17 @@ public class LineEnemy extends Enemy implements Animatable, Interactable {
     boolean goingLeft = false;
     boolean goingRight = true;
 
-    public LineEnemy(double X, double Y) {
+    public UpEnemy(double X, double Y) {
         super(10);
 
-        setImage(Globals.getInstance().getImage("Line"));
+        setImage(Globals.getInstance().getImage("UpEnemy"));
         setX(X);
         setY(Y);
 
         double direction = 90;
         setRotate(direction);
 
-        float speed = 1;
+        int speed = 1;
         heading = Utils.directionToVector(direction, speed);
     }
 
@@ -40,10 +40,10 @@ public class LineEnemy extends Enemy implements Animatable, Interactable {
     @Override
     public void step() {
         if (goingLeft) {
-            setX((getX() + heading.getX()) - 15);
+            setX((getX() + heading.getX()) - 5);
         }
         else if(goingRight){
-            setX((getX() + heading.getX()) + 15);
+            setX((getX() + heading.getX()) + 1);
         }
         if(getX() >= 1450){
             goingRight = false;

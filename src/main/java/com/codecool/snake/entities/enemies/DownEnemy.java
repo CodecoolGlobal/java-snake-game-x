@@ -7,45 +7,59 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.Laser;
 import com.codecool.snake.entities.snakes.SnakeHead;
-
 import java.util.Random;
 
 import javafx.geometry.Point2D;
 
 
-public class CircleEnemy extends Enemy implements Animatable, Interactable {
+
+public class DownEnemy extends Enemy implements Animatable, Interactable {
 
     private Point2D heading;
-    double enemyRotation = getRotate();
-    double turnRate = 0.7;
-    int speed = 3;
-    public CircleEnemy() {
+    private static Random rnd = new Random();
+    double direction;
+    int speed;
+    boolean goingLeft = false;
+    boolean goingRight = true;
+
+    public DownEnemy(double X, double Y) {
         super(10);
 
-        setImage(Globals.getInstance().getImage("CircleEnemy"));
-        setX(900);
-        setY(400);
+        setImage(Globals.getInstance().getImage("DownEnemy"));
+        setX(X);
+        setY(Y);
 
-        setRotate(5);
+        double direction = 90;
+        setRotate(direction);
 
         int speed = 1;
-        heading = Utils.directionToVector(enemyRotation, speed);
+        heading = Utils.directionToVector(direction, speed);
     }
 
 
     @Override
     public void step() {
-
-
+        if (goingLeft) {
+            setX((getX() + heading.getX()) - 5);
+        }
+        else if(goingRight){
+            setX((getX() + heading.getX()) + 1);
+        }
+        if(getX() >= 1450){
+            goingRight = false;
+            goingLeft = true;
+        }
+        if(getX() <= 50){
+            goingRight = true;
+            goingLeft = false;
+        }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
-        enemyRotation -= turnRate;
-        heading = Utils.directionToVector(enemyRotation, speed);
     }
 
     @Override
     public void apply(GameEntity entity) {
-        if (entity instanceof SnakeHead) {
+        if(entity instanceof SnakeHead){
             System.out.println(getMessage());
             destroy();
         }
@@ -60,3 +74,4 @@ public class CircleEnemy extends Enemy implements Animatable, Interactable {
         return (getDamage() + " damage");
     }
 }
+
