@@ -14,7 +14,8 @@ import com.codecool.snake.eventhandler.InputHandler;
 
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 import java.util.List;
 

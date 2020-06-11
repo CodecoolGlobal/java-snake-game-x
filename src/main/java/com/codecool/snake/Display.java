@@ -1,26 +1,18 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
-
-import java.awt.*;
-import java.sql.BatchUpdateException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Handler;
-
-
 import com.codecool.snake.entities.enemies.CircleEnemy;
 import com.codecool.snake.entities.enemies.LineEnemy;
-import javafx.beans.binding.DoubleBinding;
-import javafx.beans.property.DoubleProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 
