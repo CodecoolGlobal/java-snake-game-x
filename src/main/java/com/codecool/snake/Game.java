@@ -7,7 +7,9 @@ import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.PowerUpHealth;
 import com.codecool.snake.entities.powerups.PowerUpSpeed;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
+import com.codecool.snake.entities.snakes.Laser;
 import com.codecool.snake.entities.snakes.Snake;
+import com.codecool.snake.entities.snakes.SnakeHead;
 import com.codecool.snake.eventhandler.InputHandler;
 
 import javafx.geometry.Point2D;
@@ -73,6 +75,10 @@ public class Game extends Pane {
         for (int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
         for (int i = 0; i < numberOfPowerUps; ++i) new PowerUpHealth();
         for (int i = 0; i < numberOfPowerUps; ++i) new PowerUpSpeed();
+    }
+
+    public void spawnLaser(){
+        new Laser(snake);
     }
 
     private void setupInputHandling() {

@@ -27,6 +27,7 @@ public class InputHandler {
         return false;
     }
 
+
     private InputHandler() {
         // singleton needs the class to have private constructor
     }

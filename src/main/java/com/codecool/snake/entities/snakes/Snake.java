@@ -9,6 +9,7 @@ import com.codecool.snake.eventhandler.InputHandler;
 
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 
 import java.awt.*;
 
@@ -36,10 +37,21 @@ public class Snake implements Animatable {
         return length;
     }
 
+    public Point2D getSnakeHeadPosition(){
+        return head.getHeadPosition();
+    }
+
+    public double getSnakeRotation(){
+        return head.getRotate();
+    }
+
+
     public void step() {
-        System.out.println(Globals.getInstance().display.getObjectList().size());
-        System.out.println(Globals.getInstance().display.getEnemyCount());
         SnakeControl turnDir = getUserInput();
+        SnakeControl laser = getLaser();
+        if(laser != SnakeControl.INVALID){
+            Globals.getInstance().shootLaser();
+        }
         head.updateRotation(turnDir, speed);
         updateSnakeBodyHistory();
         checkForGameOverConditions();
@@ -58,6 +70,13 @@ public class Snake implements Animatable {
         if(InputHandler.getInstance().isKeyPressed(KeyCode.A)) turnDir = SnakeControl.TURN_LEFT;
         if(InputHandler.getInstance().isKeyPressed(KeyCode.D)) turnDir = SnakeControl.TURN_RIGHT;
         return turnDir;
+    }
+
+    private SnakeControl getLaser(){
+        SnakeControl laser = SnakeControl.INVALID;
+        if(InputHandler.getInstance().isKeyPressed(KeyCode.W)) laser = SnakeControl.LASER;
+        InputHandler.getInstance().setKeyReleased(KeyCode.W);
+        return laser;
     }
 
     public void addPart(int numParts) {

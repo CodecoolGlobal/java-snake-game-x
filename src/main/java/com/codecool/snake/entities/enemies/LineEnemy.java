@@ -5,6 +5,7 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.snakes.Laser;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import java.util.Random;
 
@@ -62,6 +63,10 @@ public class LineEnemy extends Enemy implements Animatable, Interactable {
             System.out.println(getMessage());
             destroy();
         }
+//        if(entity instanceof Laser){
+//            System.out.println(getMessage());
+//            destroy();
+//        }
     }
 
     @Override

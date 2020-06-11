@@ -3,6 +3,7 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.snakes.Laser;
 import com.codecool.snake.entities.snakes.Snake;
 
 import java.util.List;
@@ -33,6 +34,12 @@ public class GameLoop {
         }
 
         Globals.getInstance().display.frameFinished();
+//        List<GameEntity> gameObjs = Globals.getInstance().display.getObjectList();
+//        for (GameEntity meobj: gameObjs) {
+//            if(meobj instanceof Laser){
+//                System.out.println(meobj);
+//            }
+//        }
     }
 
     private void checkCollisions() {

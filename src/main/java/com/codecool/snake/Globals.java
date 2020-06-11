@@ -54,6 +54,7 @@ public class Globals {
         resources.addImage("PowerUpBerry", new Image("powerup_berry.png"));
         resources.addImage("PowerUpSpeed", new Image("powerup_speed.png"));
         resources.addImage("PowerUpHealth", new Image("powerup_health.png"));
+        resources.addImage("Laser", new Image("laser.png"));
     }
 
     public Image getImage(String name) {
@@ -78,6 +79,9 @@ public class Globals {
 
         game.restart();
     }
+    public void shootLaser(){
+        game.spawnLaser();
+    }
 
     int newSpawn = 10;
 
@@ -89,18 +93,12 @@ public class Globals {
             for (int i = 0; i < 2; ++i) new PowerUpHealth();
             for (int i = 0; i < 2; ++i) new PowerUpSpeed();
             newSpawn+=3;
-            System.out.println(gameObjs.size());
-            System.out.println(newSpawn);
-            System.out.println("Am adaugat extra hrana");
         }
         if (display.getEnemyCount() < 1) {
             new CircleEnemy();
             new LineEnemy(100, 100);
             new LineEnemy(1450, 700);
         }
-        System.out.println(gameObjs.size());
-        System.out.println(newSpawn);
-        System.out.println("M am executat");
     }
 
 

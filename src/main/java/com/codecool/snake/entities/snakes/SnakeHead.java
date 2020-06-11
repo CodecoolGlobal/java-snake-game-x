@@ -38,6 +38,9 @@ public class SnakeHead extends GameEntity implements Interactable {
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
     }
+    public Point2D getHeadPosition(){
+        return this.getPosition();
+    }
 
     @Override
     public void apply(GameEntity entity) {
