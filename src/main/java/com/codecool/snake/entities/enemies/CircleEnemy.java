@@ -50,6 +50,10 @@ public class CircleEnemy extends Enemy implements Animatable, Interactable {
             System.out.println(getMessage());
             destroy();
         }
+        if(entity instanceof Laser){
+            System.out.println(getMessage());
+            destroy();
+        }
     }
 
     @Override

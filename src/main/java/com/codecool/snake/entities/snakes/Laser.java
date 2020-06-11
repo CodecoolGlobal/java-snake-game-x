@@ -20,7 +20,7 @@ public class Laser extends GameEntity implements Animatable, Interactable {
         double direction = snake.getSnakeRotation();
         setRotate(direction);
 
-        int speed = 5;
+        int speed = 7;
         laserDirection = Utils.directionToVector( direction, speed);
     }
 
