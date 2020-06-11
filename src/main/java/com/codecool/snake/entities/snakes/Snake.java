@@ -46,7 +46,7 @@ public class Snake implements Animatable {
         SnakeControl turnDir = getUserInput();
         SnakeControl laser = getLaser();
         if(laser != SnakeControl.INVALID){
-            if (bodyLength() > 8){
+            if (bodyLength() > 6){
                 Globals.getInstance().shootLaser();
             }
         }

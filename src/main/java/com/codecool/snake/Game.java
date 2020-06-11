@@ -3,18 +3,15 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.CircleEnemy;
 import com.codecool.snake.entities.enemies.LineEnemy;
-import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.PowerUpHealth;
 import com.codecool.snake.entities.powerups.PowerUpSpeed;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.snakes.Laser;
 import com.codecool.snake.entities.snakes.Snake;
-import com.codecool.snake.entities.snakes.SnakeHead;
 import com.codecool.snake.eventhandler.InputHandler;
 
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
 import java.util.List;
@@ -48,7 +45,7 @@ public class Game extends Pane {
     public void init() {
         spawnSnake();
         spawnEnemies(1);
-        spawnPowerUps(2);
+        spawnPowerUps();
 
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
@@ -61,6 +58,9 @@ public class Game extends Pane {
         setupInputHandling();
         Globals.getInstance().startGame();
     }
+    public int getSnakeLength(){
+        return snake.bodyLength();
+    }
 
     private void spawnSnake() {
         snake = new Snake(new Point2D(500, 500));
@@ -72,11 +72,7 @@ public class Game extends Pane {
         for (int i = 0; i < numberOfEnemies; ++i) new LineEnemy(1450, 700);
     }
 
-    private void spawnPowerUps(int numberOfPowerUps) {
-        for (int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
-        for (int i = 0; i < numberOfPowerUps; ++i) new PowerUpHealth();
-        for (int i = 0; i < numberOfPowerUps; ++i) new PowerUpSpeed();
-    }
+    private void spawnPowerUps() { new SimplePowerUp();}
 
     public void spawnLaser(){
         new Laser(snake);

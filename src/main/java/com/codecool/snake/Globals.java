@@ -85,16 +85,39 @@ public class Globals {
         game.spawnLaser();
     }
 
-    int newSpawn = 10;
+    int powerUp = 0;
 
     public void extraSpawn() {
 
-        List<GameEntity> gameObjs = display.getObjectList();
-        if (gameObjs.size() <= newSpawn && gameObjs.size() != 0) {
-            for (int i = 0; i < 2; ++i) new SimplePowerUp();
-            for (int i = 0; i < 2; ++i) new PowerUpHealth();
-            for (int i = 0; i < 2; ++i) new PowerUpSpeed();
-            newSpawn+=3;
+//        List<GameEntity> gameObjs = display.getObjectList();
+//        if (gameObjs.size() <= newSpawn && gameObjs.size() != 0) {
+//            for (int i = 0; i < 2; ++i) new SimplePowerUp();
+//            for (int i = 0; i < 2; ++i) new PowerUpHealth();
+//            for (int i = 0; i < 2; ++i) new PowerUpSpeed();
+//            newSpawn+=3;
+//        }
+        if (display.getPowerUpPizza() < 1){
+            new SimplePowerUp();
+            powerUp++;
+        }
+        switch (powerUp){
+            case 2:
+            case 4:
+            case 8:
+                if (display.getPowerUpSpeed() < 1){new PowerUpSpeed();}
+                powerUp++;
+                break;
+            case 3:
+            case 6:
+            case 9:
+                if (display.getPowerUpHealth() < 1){new PowerUpHealth();}
+                powerUp++;
+                break;
+            default:
+                break;
+        }
+        if(powerUp == 16){
+            powerUp = 0;
         }
         if (display.getEnemyCount() < 1) {
             new CircleEnemy();
@@ -102,10 +125,6 @@ public class Globals {
             new LineEnemy(1450, 700);
         }
     }
-
-//    public int getSnakeHealth(){
-//        return game.getSnakeHealth();
-//    }
 
 
     private Globals() {

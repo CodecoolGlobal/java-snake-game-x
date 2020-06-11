@@ -3,6 +3,9 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.CircleEnemy;
 import com.codecool.snake.entities.enemies.LineEnemy;
+import com.codecool.snake.entities.powerups.PowerUpHealth;
+import com.codecool.snake.entities.powerups.PowerUpSpeed;
+import com.codecool.snake.entities.powerups.SimplePowerUp;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -24,6 +27,9 @@ public class Display {
     private List<Node> screenText = new ArrayList<>();
     Button restart = new Button("Restart");
     int enemyCount = 0;
+    int powerUpPizza = 0;
+    int powerUpSpeed = 0;
+    int powerUpHealth = 0;
     int width = 100;
     Rectangle healtbarSnake= new Rectangle(width, 25.0, Color.RED);
     Rectangle healthBackground = new Rectangle(120, 35, Color.WHITE);
@@ -61,6 +67,15 @@ public class Display {
         if(entity instanceof CircleEnemy || entity instanceof LineEnemy){
             enemyCount++;
         }
+        if (entity instanceof PowerUpHealth){
+            powerUpHealth++;
+        }
+        if (entity instanceof PowerUpSpeed){
+            powerUpSpeed++;
+        }
+        if (entity instanceof SimplePowerUp){
+            powerUpPizza++;
+        }
         displayPane.getChildren().add(entity);
         gameObjects.add(entity);
     }
@@ -72,6 +87,15 @@ public class Display {
     public void remove(GameEntity entity) {
         if(entity instanceof CircleEnemy || entity instanceof LineEnemy){
             enemyCount--;
+        }
+        if (entity instanceof PowerUpHealth){
+            powerUpHealth--;
+        }
+        if (entity instanceof PowerUpSpeed){
+            powerUpSpeed--;
+        }
+        if (entity instanceof SimplePowerUp){
+            powerUpPizza--;
         }
         displayPane.getChildren().remove(entity);
         gameObjects.remove(entity);
@@ -104,6 +128,15 @@ public class Display {
 
     public int getEnemyCount(){
         return enemyCount;
+    }
+    public int getPowerUpPizza(){
+        return powerUpPizza;
+    }
+    public int getPowerUpSpeed(){
+        return powerUpSpeed;
+    }
+    public int getPowerUpHealth(){
+        return powerUpHealth;
     }
 
     public void clear() {

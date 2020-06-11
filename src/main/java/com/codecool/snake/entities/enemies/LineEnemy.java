@@ -32,7 +32,7 @@ public class LineEnemy extends Enemy implements Animatable, Interactable {
         double direction = 90;
         setRotate(direction);
 
-        int speed = 3;
+        float speed = 1;
         heading = Utils.directionToVector(direction, speed);
     }
 
