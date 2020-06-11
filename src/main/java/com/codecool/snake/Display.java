@@ -26,7 +26,7 @@ public class Display {
     int enemyCount = 0;
     int width = 100;
     Rectangle healtbarSnake= new Rectangle(width, 25.0, Color.RED);
-    Rectangle healthBackground = new Rectangle(120, 35, Color.BLACK);
+    Rectangle healthBackground = new Rectangle(120, 35, Color.WHITE);
 
 
 

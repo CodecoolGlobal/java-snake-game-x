@@ -1,7 +1,6 @@
 package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.DelayedModificationList;
-import com.codecool.snake.Display;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
@@ -9,9 +8,6 @@ import com.codecool.snake.eventhandler.InputHandler;
 
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
-
-import java.awt.*;
 
 
 public class Snake implements Animatable {
@@ -50,7 +46,9 @@ public class Snake implements Animatable {
         SnakeControl turnDir = getUserInput();
         SnakeControl laser = getLaser();
         if(laser != SnakeControl.INVALID){
-            Globals.getInstance().shootLaser();
+            if (bodyLength() > 8){
+                Globals.getInstance().shootLaser();
+            }
         }
         head.updateRotation(turnDir, speed);
         updateSnakeBodyHistory();
@@ -91,15 +89,9 @@ public class Snake implements Animatable {
         Globals.getInstance().display.updateSnakeHeadDrawPosition(head);
     }
 
-    public void changeHealth(int diff) {
-        health -= diff;
-    }
-    public void increaseHealth(int diff) {
-        health += diff;
-    }
-    public void changeSpeed(float diff){
-        speed += diff;
-    }
+    public void changeHealth(int diff) { health -= diff; }
+    public void increaseHealth(int diff) { health += diff; }
+    public void changeSpeed(float diff){ speed += diff; }
 
     private void checkForGameOverConditions() {
         if (head.isOutOfBounds() || health <= 0) {
