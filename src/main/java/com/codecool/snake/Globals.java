@@ -101,6 +101,10 @@ public class Globals {
         }
     }
 
+//    public int getSnakeHealth(){
+//        return game.getSnakeHealth();
+//    }
+
 
     private Globals() {
         // singleton needs the class to have private constructor

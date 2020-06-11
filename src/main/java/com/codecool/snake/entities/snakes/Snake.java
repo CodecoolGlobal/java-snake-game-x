@@ -57,6 +57,7 @@ public class Snake implements Animatable {
         checkForGameOverConditions();
         body.doPendingModifications();
         Globals.getInstance().extraSpawn();
+        Globals.getInstance().display.changeDisplayHealth(health);
     }
     public void destroy(){
         this.head.destroy();
@@ -91,6 +92,9 @@ public class Snake implements Animatable {
     }
 
     public void changeHealth(int diff) {
+        health -= diff;
+    }
+    public void increaseHealth(int diff) {
         health += diff;
     }
     public void changeSpeed(float diff){
@@ -102,8 +106,6 @@ public class Snake implements Animatable {
             System.out.println("Game Over");
             Globals.getInstance().stopGame();
             Globals.getInstance().showText(bodyLength());
-
-
         }
     }
 

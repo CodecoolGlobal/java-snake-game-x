@@ -19,7 +19,6 @@ public class CircleEnemy extends Enemy implements Animatable, Interactable {
     double enemyRotation = getRotate();
     double turnRate = 0.7;
     int speed = 3;
-
     public CircleEnemy() {
         super(10);
 

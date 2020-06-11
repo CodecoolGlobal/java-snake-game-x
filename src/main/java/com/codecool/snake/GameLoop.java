@@ -34,12 +34,6 @@ public class GameLoop {
         }
 
         Globals.getInstance().display.frameFinished();
-//        List<GameEntity> gameObjs = Globals.getInstance().display.getObjectList();
-//        for (GameEntity meobj: gameObjs) {
-//            if(meobj instanceof Laser){
-//                System.out.println(meobj);
-//            }
-//        }
     }
 
     private void checkCollisions() {
