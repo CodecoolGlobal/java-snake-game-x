@@ -8,7 +8,10 @@ import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.resources.Resources;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
 
 import java.util.List;
 
@@ -33,8 +36,12 @@ public class Globals {
 
 
     public void showText(int length) {
-        Text gameOver = new Text(500, 300, "GAME OVER!");
-        Text score = new Text(500, 350, "Your snake's length is " + length);
+        Text gameOver = new Text(530, 350, "GAME OVER!");
+        gameOver.setFill(Color.WHITE);
+        gameOver.setFont(Font.font("Verdana", FontWeight.BOLD, 70));
+        Text score = new Text(670, 400, "SNAKE'S LENGTH: " + length);
+        score.setFill(Color.WHITE);
+        score.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         display.add(gameOver);
         display.add(score);
     }
@@ -115,7 +122,7 @@ public class Globals {
             default:
                 break;
         }
-        if(powerUp == 16){
+        if(powerUp == 10){
             powerUp = 0;
         }
         if (display.getEnemyCount() < 1) {
