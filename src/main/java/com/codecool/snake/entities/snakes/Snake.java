@@ -55,7 +55,9 @@ public class Snake implements Animatable {
         checkForGameOverConditions();
         body.doPendingModifications();
         Globals.getInstance().extraSpawn();
-        Globals.getInstance().display.changeDisplayHealth(health);
+        if(health < 100){
+            Globals.getInstance().display.changeDisplayHealth(health);
+        }
     }
     public void destroy(){
         this.head.destroy();
