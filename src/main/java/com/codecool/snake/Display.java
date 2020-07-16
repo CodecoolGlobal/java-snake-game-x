@@ -17,10 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class Display {
-    private Text score;
     private Text healthText;
+    private int timer = 5;
     private Pane displayPane;
     private DelayedModificationList<GameEntity> gameObjects = new DelayedModificationList<>();
     private List<Node> screenText = new ArrayList<>();
@@ -30,9 +29,10 @@ public class Display {
     int powerUpSpeed = 0;
     int powerUpHealth = 0;
     int width = 100;
-    Rectangle healtbarSnake= new Rectangle(width, 25.0, Color.RED);
+    Rectangle healtbarSnake = new Rectangle(width, 25.0, Color.RED);
     Rectangle healthBackground = new Rectangle(120, 35, Color.WHITE);
-
+    Text score = new Text(715, 25, "SCORE: 0");
+    Text timerText = new Text(715, 80, " ");
 
 
     public Display(Pane pane) {
@@ -47,8 +47,10 @@ public class Display {
         Text health = new Text(1315, 25, "HEALTH");
         displayPane.getChildren().add(health);
         health.setFill(Color.WHITE);
-
-
+        displayPane.getChildren().add(score);
+        score.setFill(Color.WHITE);
+        displayPane.getChildren().add(timerText);
+        timerText.setFill(Color.WHITE);
         restart.setOnAction(actionEvent -> {
             Globals.getInstance().stopGame();
             Globals.getInstance().restartGame();
@@ -56,61 +58,74 @@ public class Display {
     }
 
 
-    public void changeDisplayHealth(int newHealth){
+    public void changeDisplayHealth(int newHealth) {
         healtbarSnake.setWidth(newHealth);
     }
 
+    public int getTimer() {
+        return timer;
+    }
+
+    public void displayTimer(String timer) {
+        timerText.setText(timer);
+    }
+
+    public void changeScore() {
+        score.setText("SCORE: " + (Globals.getInstance().game.getSnakeLength() - 4));
+    }
 
 
     public void add(GameEntity entity) {
-        if(entity instanceof CircleEnemy || entity instanceof UpEnemy){
+        if (entity instanceof CircleEnemy || entity instanceof UpEnemy) {
             enemyCount++;
         }
-        if (entity instanceof PowerUpHealth){
+        if (entity instanceof PowerUpHealth) {
             powerUpHealth++;
         }
-        if (entity instanceof PowerUpSpeed){
+        if (entity instanceof PowerUpSpeed) {
             powerUpSpeed++;
         }
-        if (entity instanceof SimplePowerUp){
+        if (entity instanceof SimplePowerUp) {
             powerUpPizza++;
         }
         displayPane.getChildren().add(entity);
         gameObjects.add(entity);
     }
-    public void add(Node node){
+
+    public void add(Node node) {
         displayPane.getChildren().add(node);
         screenText.add(node);
     }
 
     public void remove(GameEntity entity) {
-        if(entity instanceof CircleEnemy || entity instanceof UpEnemy){
+        if (entity instanceof CircleEnemy || entity instanceof UpEnemy) {
             enemyCount--;
         }
-        if (entity instanceof PowerUpHealth){
+        if (entity instanceof PowerUpHealth) {
             powerUpHealth--;
         }
-        if (entity instanceof PowerUpSpeed){
+        if (entity instanceof PowerUpSpeed) {
             powerUpSpeed--;
         }
-        if (entity instanceof SimplePowerUp){
+        if (entity instanceof SimplePowerUp) {
             powerUpPizza--;
         }
         displayPane.getChildren().remove(entity);
         gameObjects.remove(entity);
     }
 
-    public void remove(Node node){
+    public void remove(Node node) {
         displayPane.getChildren().remove(node);
     }
 
-    public void removeAllText(){
+    public void removeAllText() {
         screenText.clear();
     }
 
-    public List<Node> getScreenText(){
+    public List<Node> getScreenText() {
         return screenText;
     }
+
     public List<GameEntity> getObjectList() {
         return gameObjects.getList();
     }
@@ -125,16 +140,19 @@ public class Display {
 
     }
 
-    public int getEnemyCount(){
+    public int getEnemyCount() {
         return enemyCount;
     }
-    public int getPowerUpPizza(){
+
+    public int getPowerUpPizza() {
         return powerUpPizza;
     }
-    public int getPowerUpSpeed(){
+
+    public int getPowerUpSpeed() {
         return powerUpSpeed;
     }
-    public int getPowerUpHealth(){
+
+    public int getPowerUpHealth() {
         return powerUpHealth;
     }
 
