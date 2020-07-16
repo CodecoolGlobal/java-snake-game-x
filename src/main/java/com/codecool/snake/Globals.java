@@ -7,6 +7,7 @@ import com.codecool.snake.entities.powerups.PowerUpSpeed;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.resources.Resources;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -39,11 +40,21 @@ public class Globals {
         Text gameOver = new Text(530, 350, "GAME OVER!");
         gameOver.setFill(Color.WHITE);
         gameOver.setFont(Font.font("Verdana", FontWeight.BOLD, 70));
-        Text score = new Text(670, 400, "SNAKE'S LENGTH: " + length);
-        score.setFill(Color.WHITE);
-        score.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        display.removeScore();
+        Text scoreText = new Text(710, 400, "SCORE: " + (length - 4));
+        scoreText.setFill(Color.WHITE);
+        scoreText.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         display.add(gameOver);
-        display.add(score);
+        display.add(scoreText);
+        Button restart = new Button("Restart");
+        display.add(restart);
+        restart.setStyle("-fx-font: 18 arial; -fx-base: #0e48ad;");
+        restart.setLayoutX(725);
+        restart.setLayoutY(450);
+        restart.setOnAction(actionEvent -> {
+            Globals.getInstance().stopGame();
+            Globals.getInstance().restartGame();
+        });
     }
 
 
@@ -80,10 +91,9 @@ public class Globals {
 
     public void restartGame() {
         List<Node> text = Globals.getInstance().display.getScreenText();
-        if (text.size() > 0) {
-            Globals.getInstance().display.remove(text.get(0));
-            Globals.getInstance().display.remove(text.get(1));
-        }
+//        if (text.size() > 0) {
+            Globals.getInstance().display.removeAll();
+//        }
 
         game.restart();
     }

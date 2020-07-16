@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -23,43 +25,43 @@ public class Display {
     private Pane displayPane;
     private DelayedModificationList<GameEntity> gameObjects = new DelayedModificationList<>();
     private List<Node> screenText = new ArrayList<>();
-    Button restart = new Button("Restart");
     int enemyCount = 0;
     int powerUpPizza = 0;
     int powerUpSpeed = 0;
     int powerUpHealth = 0;
     int width = 100;
-    Rectangle healtbarSnake = new Rectangle(width, 25.0, Color.RED);
+    Rectangle healthBarSnake = new Rectangle(width, 25.0, Color.RED);
     Rectangle healthBackground = new Rectangle(120, 35, Color.WHITE);
-    Text score = new Text(715, 25, "SCORE: 0");
-    Text timerText = new Text(715, 80, " ");
+    Rectangle header = new Rectangle(1500, 50, Color.BLACK);
+    Text score = new Text(50, 35, "SCORE: 0");
+    Text timerText = new Text(715, 30, " ");
 
 
     public Display(Pane pane) {
         displayPane = pane;
-        displayPane.getChildren().add(restart);
+        displayPane.getChildren().add(header);
         displayPane.getChildren().add(healthBackground);
         healthBackground.setX(1290);
         healthBackground.setY(5);
-        displayPane.getChildren().add(healtbarSnake);
-        healtbarSnake.setX(1300);
-        healtbarSnake.setY(10);
+        displayPane.getChildren().add(healthBarSnake);
+        healthBarSnake.setX(1300);
+        healthBarSnake.setY(10);
+        header.setFill(Color.BLACK);
         Text health = new Text(1315, 25, "HEALTH");
         displayPane.getChildren().add(health);
         health.setFill(Color.WHITE);
         displayPane.getChildren().add(score);
+        score.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
+        timerText.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         score.setFill(Color.WHITE);
         displayPane.getChildren().add(timerText);
         timerText.setFill(Color.WHITE);
-        restart.setOnAction(actionEvent -> {
-            Globals.getInstance().stopGame();
-            Globals.getInstance().restartGame();
-        });
+
     }
 
 
     public void changeDisplayHealth(int newHealth) {
-        healtbarSnake.setWidth(newHealth);
+        healthBarSnake.setWidth(newHealth);
     }
 
     public int getTimer() {
@@ -71,9 +73,14 @@ public class Display {
     }
 
     public void changeScore() {
-        score.setText("SCORE: " + (Globals.getInstance().game.getSnakeLength() - 4));
+        score.setText("SCORE: " + (Globals.getInstance().game.getSnakeLength() - 3));
     }
+    public void removeScore() {displayPane.getChildren().remove(score);}
+    public void resetScore() { score.setText("SCORE: 0"); }
 
+    public Text getScore() {
+        return score;
+    }
 
     public void add(GameEntity entity) {
         if (entity instanceof CircleEnemy || entity instanceof UpEnemy) {
@@ -118,8 +125,15 @@ public class Display {
         displayPane.getChildren().remove(node);
     }
 
-    public void removeAllText() {
-        screenText.clear();
+    public void removeAll() {
+        displayPane.getChildren().clear();
+        resetScore();
+        changeDisplayHealth(100);
+        displayPane.getChildren().add(header);
+        displayPane.getChildren().add(score);
+        displayPane.getChildren().add(healthBackground);
+        displayPane.getChildren().add(healthBarSnake);
+        displayPane.getChildren().add(timerText);
     }
 
     public List<Node> getScreenText() {
