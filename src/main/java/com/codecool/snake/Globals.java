@@ -6,7 +6,6 @@ import com.codecool.snake.entities.powerups.PowerUpHealth;
 import com.codecool.snake.entities.powerups.PowerUpSpeed;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.resources.Resources;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
