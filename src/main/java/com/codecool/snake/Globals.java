@@ -41,6 +41,7 @@ public class Globals {
         gameOver.setFill(Color.WHITE);
         gameOver.setFont(Font.font("Verdana", FontWeight.BOLD, 70));
         display.removeScore();
+        display.removeHealth();
         Text scoreText = new Text(710, 400, "SCORE: " + (length - 4));
         scoreText.setFill(Color.WHITE);
         scoreText.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
@@ -90,10 +91,7 @@ public class Globals {
     }
 
     public void restartGame() {
-        List<Node> text = Globals.getInstance().display.getScreenText();
-//        if (text.size() > 0) {
             Globals.getInstance().display.removeAll();
-//        }
 
         game.restart();
     }
@@ -104,14 +102,6 @@ public class Globals {
     int powerUp = 0;
 
     public void extraSpawn() {
-
-//        List<GameEntity> gameObjs = display.getObjectList();
-//        if (gameObjs.size() <= newSpawn && gameObjs.size() != 0) {
-//            for (int i = 0; i < 2; ++i) new SimplePowerUp();
-//            for (int i = 0; i < 2; ++i) new PowerUpHealth();
-//            for (int i = 0; i < 2; ++i) new PowerUpSpeed();
-//            newSpawn+=3;
-//        }
         if (display.getPowerUpPizza() < 1){
             new SimplePowerUp();
             powerUp++;

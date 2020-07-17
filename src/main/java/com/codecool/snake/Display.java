@@ -20,7 +20,6 @@ import java.util.List;
 
 
 public class Display {
-    private Text healthText;
     private int timer = 5;
     private Pane displayPane;
     private DelayedModificationList<GameEntity> gameObjects = new DelayedModificationList<>();
@@ -30,11 +29,12 @@ public class Display {
     int powerUpSpeed = 0;
     int powerUpHealth = 0;
     int width = 100;
-    Rectangle healthBarSnake = new Rectangle(width, 25.0, Color.RED);
+    Text health = new Text(1315, 25, "HEALTH");
+    Rectangle healthBarSnake = new Rectangle(width, 25, Color.RED);
     Rectangle healthBackground = new Rectangle(120, 35, Color.WHITE);
     Rectangle header = new Rectangle(1500, 50, Color.BLACK);
     Text score = new Text(50, 35, "SCORE: 0");
-    Text timerText = new Text(715, 30, " ");
+    Text timerText = new Text(590, 30, " ");
 
 
     public Display(Pane pane) {
@@ -47,7 +47,6 @@ public class Display {
         healthBarSnake.setX(1300);
         healthBarSnake.setY(10);
         header.setFill(Color.BLACK);
-        Text health = new Text(1315, 25, "HEALTH");
         displayPane.getChildren().add(health);
         health.setFill(Color.WHITE);
         displayPane.getChildren().add(score);
@@ -76,6 +75,11 @@ public class Display {
         score.setText("SCORE: " + (Globals.getInstance().game.getSnakeLength() - 3));
     }
     public void removeScore() {displayPane.getChildren().remove(score);}
+    public void removeHealth() {
+        displayPane.getChildren().remove(healthBackground);
+        displayPane.getChildren().remove(healthBarSnake);
+        displayPane.getChildren().remove(health);
+    }
     public void resetScore() { score.setText("SCORE: 0"); }
 
     public Text getScore() {
@@ -133,6 +137,7 @@ public class Display {
         displayPane.getChildren().add(score);
         displayPane.getChildren().add(healthBackground);
         displayPane.getChildren().add(healthBarSnake);
+        displayPane.getChildren().add(health);
         displayPane.getChildren().add(timerText);
     }
 

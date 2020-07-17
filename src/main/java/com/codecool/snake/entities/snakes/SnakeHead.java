@@ -57,45 +57,45 @@ public class SnakeHead extends GameEntity implements Interactable {
             snake.addPart(1);
         }
         if (entity instanceof PowerUpSpeed) {
-            snake.changeSpeed(2f);
+            snake.changeSpeed(1f);
             Timer myTimer = new Timer();
             myTimer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    Globals.getInstance().display.displayTimer(String.valueOf(5));
+                    Globals.getInstance().display.displayTimer("Extra speed is over in 5 seconds!");
+                }
+            }, 0);
+            myTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    Globals.getInstance().display.displayTimer("Extra speed is over in 4 seconds!");
                 }
             }, 1000);
             myTimer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    Globals.getInstance().display.displayTimer(String.valueOf(4));
+                    Globals.getInstance().display.displayTimer("Extra speed is over in 3 seconds!");
                 }
             }, 2000);
             myTimer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    Globals.getInstance().display.displayTimer(String.valueOf(3));
+                    Globals.getInstance().display.displayTimer("Extra speed is over in 2 seconds!");
                 }
             }, 3000);
             myTimer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    Globals.getInstance().display.displayTimer(String.valueOf(2));
+                    Globals.getInstance().display.displayTimer("Extra speed is over in 1 second!");
                 }
             }, 4000);
             myTimer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    Globals.getInstance().display.displayTimer(String.valueOf(1));
+                    Globals.getInstance().display.displayTimer(" ");
+                    snake.changeSpeed(-1f);
                 }
             }, 5000);
-            myTimer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    Globals.getInstance().display.displayTimer(" ");
-                    snake.changeSpeed(-2f);
-                }
-            }, 6000);
             Globals.getInstance().display.changeScore();
             System.out.println("Snake speed is " + snake.getSpeed());
         }
